@@ -15,6 +15,10 @@
 <p>How to use:</p>
 <p>- Create a Node as a child of the FiniteStateMachine Node and rename it as the desier state.</p>
 <img src = "Screenshots/How to use 2.png">
+<p>- Add script to each Node added and extends State class on each.</p>
+<p>- Start creating states that modify/calculate/update your entity.</p>
+<p>If you want to change state at desire condition just emit the "change_state" signal and enter the target state you want to update.</p>
+<img src = "Screenshots/How to use 1.png">
 <h3>"FinateStateMachine" Class:</h3>
 <p>This class hold, manage, update and change the states, has three important variables that can be modified:</p>
 <p>- The "initial_state" variable (exported) that hold the start state generally its: idle state</p>
