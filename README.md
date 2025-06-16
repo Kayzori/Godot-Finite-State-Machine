@@ -132,14 +132,13 @@ This emits a signal to the FSM, which:
 ## 📸 Screenshots
 
 ### State Class Example
-![State Source](Screenshots/State Source Code.png)
+<img src = "Screenshots/State Source Code.png">
 
 ### FiniteStateMachine Structure
-![How to use](Screenshots/How to use 2.png)
+<img src = "Screenshots/How to use 2.png">
 
 ### State Switch Logic
-![Change State](Screenshots/How to use 1.png)
-
+<img src = "Screenshots/How to use 1.png">
 ---
 
 ## ✅ Pros
