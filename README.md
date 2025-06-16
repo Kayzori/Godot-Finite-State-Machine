@@ -11,10 +11,10 @@
 <h3>"State" Class:</h3>
 <img src = "Screenshots/State Source Code.png">
 <p>This class is generally a template of a standard state so it can properly managed by the FiniteStateMachine Node</p>
-<p>the class has "change_state" signal that has 2 args: first should be the current state that the machine update, second should be the target state as a StringName of the State Node</p>
-<p>how to use:</p>
-<p>create a Node as a child of the FiniteStateMachine Node and rename it as the desier state</p>
-<img src = "Screenshots/How to use 1.png">
+<p>The class has "change_state" signal that has 2 args: first should be the current state that the machine update, second should be the target state as a StringName of the State Node, and it has also the most importants: the update methods.</p>
+<p>How to use:</p>
+<p>- Create a Node as a child of the FiniteStateMachine Node and rename it as the desier state.</p>
+<img src = "Screenshots/How to use 2.png">
 <h3>"FinateStateMachine" Class:</h3>
 <p>This class hold, manage, update and change the states, has three important variables that can be modified:</p>
 <p>- The "initial_state" variable (exported) that hold the start state generally its: idle state</p>
