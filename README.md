@@ -1,26 +1,162 @@
-<h1>Setup The Tool</h1>
-<h2>Step 1:</h2>
-<a href = "https://codeload.github.com/Kayzori/Godot-Finite-State-Machine/zip/refs/heads/main">Download the tool here...</a>
-<h2>Step 2:</h2>
-<p>Extract the .zip file then go to your godot project:</p>
-<p>Grab the "Godot-Finite-State-Machine-main/FiniteStateMachine" folder and put it on "res://Addons" folder (if you don't have the folder just create one).</p>
-<h2>Step 3:</h2>
-<p>In your godot editor go to "Project -> Project Settings" then go to the plugin section, you will see the "FiniteStateMachine" plugin, enable it and reload your project.</p>
-<h1>How To Use</h1>
-<h2>The Tool Has 2 Classes:</h2>
-<h3>"State" Class:</h3>
-<img src = "Screenshots/State Source Code.png">
-<p>This class is generally a template of a standard state so it can properly managed by the FiniteStateMachine Node</p>
-<p>The class has "change_state" signal that has 2 args: first should be the current state that the machine update, second should be the target state as a StringName of the State Node, and it has also the most importants: the update methods.</p>
-<p>How to use:</p>
-<p>- Create a Node as a child of the FiniteStateMachine Node and rename it as the desier state.</p>
-<img src = "Screenshots/How to use 2.png">
-<p>- Add script to each Node added and extends State class on each.</p>
-<p>- Start creating states that modify/calculate/update your entity.</p>
-<p>If you want to change state at desire condition just emit the "change_state" signal and enter the target state you want to update.</p>
-<img src = "Screenshots/How to use 1.png">
-<h3>"FinateStateMachine" Class:</h3>
-<p>This class hold, manage, update and change the states, has three important variables that can be modified:</p>
-<p>- The "initial_state" variable (exported) that hold the start state generally its: idle state</p>
-<p>- The "current_state" variable that hold the current state so the class can update it</p>
-<p>- The "states" variable and its a dictionary that hold all the states that are child of the FiniteStateMachine Node as String keys</p>
+
+# Godot Finite State Machine
+
+A simple and extensible Finite State Machine (FSM) implementation for the Godot Engine written in GDScript.
+
+---
+
+## 📦 Setup
+
+### Step 1:
+Download the tool from the repository:  
+👉 [Download ZIP](https://codeload.github.com/Kayzori/Godot-Finite-State-Machine/zip/refs/heads/main)
+
+### Step 2:
+Extract the ZIP and move the folder:
+
+```bash
+# From this:
+Godot-Finite-State-Machine-main/FiniteStateMachine
+
+# To your project:
+res://Addons/FiniteStateMachine
+```
+
+> 💡 If the `Addons/` folder doesn’t exist, just create it manually.
+
+### Step 3:
+In the Godot Editor:
+
+1. Go to `Project -> Project Settings`
+2. Open the **Plugins** tab
+3. Enable the **FiniteStateMachine** plugin
+4. Reload your project if needed
+
+---
+
+## 🧠 How It Works
+
+The tool is built around two core classes:
+
+---
+
+## 🧩 `State.gd`
+
+This is a base class for creating states. Each of your states (Idle, Walk, Jump, etc.) should inherit from this class.
+
+### Key Methods:
+- `enter()`: Called when the state becomes active
+- `exit()`: Called when the state is exited
+- `input_update(event: InputEvent)`: For handling input in the current state
+- `update(delta: float)`: For frame updates
+- `physics_update(delta: float)`: For physics-related updates
+
+### Signal:
+```gdscript
+signal change_state(current_state: State, target_state: StringName)
+```
+
+Use this to request a state change from within a state:
+```gdscript
+change_state.emit(self, "Walk")
+```
+
+---
+
+## 🧠 `FiniteStateMachine.gd`
+
+The `FiniteStateMachine` node is responsible for managing your states.
+
+### Variables:
+- `initial_state`: The state to start with (set in the editor)
+- `current_state`: The state that is currently active
+- `states`: Dictionary holding all child states by name
+
+### Main Functions:
+- `_ready()`: Registers child state nodes
+- `_input()`, `_process()`, `_physics_process()`: Delegates updates to the current state
+- `on_child_change_state(...)`: Handles state transitions
+
+---
+
+## 🧰 How To Use
+
+### 1. Add FSM Node
+
+Create a `FiniteStateMachine` node inside your Player (or any parent) node.  
+Add state nodes like `Idle`, `Walk`, etc. as children of this FSM node.
+
+```
+Player
+├── FiniteStateMachine
+│   ├── Idle
+│   └── Walk
+```
+
+### 2. Attach Scripts
+
+- Attach the `State.gd` base script to each child state node.
+- Extend the base and override relevant methods (`enter`, `physics_update`, etc.).
+
+```gdscript
+extends State
+
+@onready var sprite: AnimatedSprite2D = owner.get_node("Animations")
+
+func enter() -> void:
+    sprite.play("idle")
+
+func physics_update(_delta: float) -> void:
+    if Input.get_axis("Left", "Right"):
+        change_state.emit(self, "Walk")
+```
+
+---
+
+## 📝 Example: Switching from Idle to Walk
+
+If input is detected:
+```gdscript
+if Input.get_axis("Left", "Right"):
+    change_state.emit(self, "Walk")
+```
+
+This emits a signal to the FSM, which:
+- Checks if the current state is different
+- Calls `exit()` on the current state
+- Finds and calls `enter()` on the new state
+- Updates `current_state`
+
+---
+
+## 📸 Screenshots
+
+### State Class Example
+![State Source](Screenshots/State Source Code.png)
+
+### FiniteStateMachine Structure
+![How to use](Screenshots/How to use 2.png)
+
+### State Switch Logic
+![Change State](Screenshots/How to use 1.png)
+
+---
+
+## ✅ Pros
+
+- Clean separation of logic
+- Easy to add new states
+- Reusable base class
+- Native Godot plugin support
+
+---
+
+## 💬 License
+
+MIT – use freely in personal or commercial projects.
+
+---
+
+## 🙏 Credits
+
+Original implementation by [Kayzori](https://github.com/Kayzori)
