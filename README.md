@@ -131,8 +131,11 @@ This emits a signal to the FSM, which:
 
 ## Screenshots
 
-### State Class Example
+### State Class
 <img src = "Screenshots/State Source Code.png">
+
+### FiniteStateMachine Class
+<img src = "Screenshots/FiniteStateMachine Source Code.png">
 
 ### FiniteStateMachine Structure
 <img src = "Screenshots/How to use 2.png">
