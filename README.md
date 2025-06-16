@@ -9,9 +9,11 @@
 <h1>How To Use</h1>
 <h2>The Tool Has 2 Classes:</h2>
 <h3>"State" Class:</h3>
+<img src = "">
 <p>This class is generally a template of a standard state so it can properly managed by the FiniteStateMachine Node</p>
+<p>the class has "change_state" signal that has 2 args: first should be the current state that the machine update, second should be the target state as a StringName o the State Node</p>
 <h3>"FinateStateMachine" Class:</h3>
-<p>This class hold, manage, update and change the states, has two important variables that can be modified:</p>
-<p>- The "initial_state" variable that hold the start state generally its: idle state</p>
+<p>This class hold, manage, update and change the states, has three important variables that can be modified:</p>
+<p>- The "initial_state" variable (exported) that hold the start state generally its: idle state</p>
 <p>- The "current_state" variable that hold the current state so the class can update it</p>
-<p>- The "states" variable and its a dictionary that hold all the states that are child of the FiniteStateMachine Node</p>
+<p>- The "states" variable and its a dictionary that hold all the states that are child of the FiniteStateMachine Node as String keys</p>
