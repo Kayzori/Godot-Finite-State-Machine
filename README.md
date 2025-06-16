@@ -5,7 +5,7 @@ A simple and extensible Finite State Machine (FSM) implementation for the Godot 
 
 ---
 
-## 📦 Setup
+## Setup
 
 ### Step 1:
 Download the tool from the repository:  
@@ -22,7 +22,7 @@ Godot-Finite-State-Machine-main/FiniteStateMachine
 res://Addons/FiniteStateMachine
 ```
 
-> 💡 If the `Addons/` folder doesn’t exist, just create it manually.
+> If the `Addons/` folder doesn’t exist, just create it manually.
 
 ### Step 3:
 In the Godot Editor:
@@ -34,13 +34,13 @@ In the Godot Editor:
 
 ---
 
-## 🧠 How It Works
+## How It Works
 
 The tool is built around two core classes:
 
 ---
 
-## 🧩 `State.gd`
+## `State.gd`
 
 This is a base class for creating states. Each of your states (Idle, Walk, Jump, etc.) should inherit from this class.
 
@@ -63,7 +63,7 @@ change_state.emit(self, "Walk")
 
 ---
 
-## 🧠 `FiniteStateMachine.gd`
+## `FiniteStateMachine.gd`
 
 The `FiniteStateMachine` node is responsible for managing your states.
 
@@ -79,7 +79,7 @@ The `FiniteStateMachine` node is responsible for managing your states.
 
 ---
 
-## 🧰 How To Use
+## How To Use
 
 ### 1. Add FSM Node
 
@@ -113,7 +113,7 @@ func physics_update(_delta: float) -> void:
 
 ---
 
-## 📝 Example: Switching from Idle to Walk
+## Example: Switching from Idle to Walk
 
 If input is detected:
 ```gdscript
@@ -129,7 +129,7 @@ This emits a signal to the FSM, which:
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
 ### State Class Example
 <img src = "Screenshots/State Source Code.png">
@@ -141,7 +141,7 @@ This emits a signal to the FSM, which:
 <img src = "Screenshots/How to use 1.png">
 ---
 
-## ✅ Pros
+## Pros
 
 - Clean separation of logic
 - Easy to add new states
@@ -150,12 +150,12 @@ This emits a signal to the FSM, which:
 
 ---
 
-## 💬 License
+## License
 
 MIT – use freely in personal or commercial projects.
 
 ---
 
-## 🙏 Credits
+## Credits
 
 Original implementation by [Kayzori](https://github.com/Kayzori)
