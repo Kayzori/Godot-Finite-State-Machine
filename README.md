@@ -1,3 +1,6 @@
+## License
+
+This project is licensed under the [MIT License](./LICENSE) – use freely in personal or commercial projects.
 
 # Godot Finite State Machine
 
